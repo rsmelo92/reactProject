@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Button } from 'reactstrap';
+import { BrowserRouter } from 'react-router-dom'; 
+import Route from 'react-router-dom/Route'; 
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-        <Button color="danger">Danger!</Button>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <Route path="/" exact strict render={
+            ()=>{
+              return (<h1>Hello World!</h1>)
+            }
+          }/>
+          <Route path="/about" exact strict render={
+            ()=>{
+              return (<h1>About</h1>)
+            }
+          }/>
+        </div>
+      </BrowserRouter>
     );
   }
 }
