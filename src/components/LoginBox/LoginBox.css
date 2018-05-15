@@ -1,0 +1,25 @@
+.login-holder{
+    height: 90vh;    
+}
+.login-logo{
+    width: 210px;
+}
+.login-box{
+    max-width: 330px;
+    margin: 0 auto;
+    text-align: center;
+}
+.btn-social-login-holder{
+    text-align: center;
+}
+.btn-social-login-holder .btn-social-login{
+    display: block;
+    margin: 10px auto;
+    min-width: 300px;
+}
+.email-login-holder{
+    text-align: left;
+}
+.btn-email-login{
+    width: 100%;
+}
