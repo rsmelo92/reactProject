@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import eskolareLogo from './eskolare.png';
 import './LoginBox.css';
+import { Redirect } from 'react-router';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 class LoginBox extends Component {
+    state = {
+        loggedIn:localStorage.getItem('loggedIn')
+    }
     responseFacebook = (response) => {
-        console.log(response)
+        if (response.accessToken) {
+            console.log(response.accessToken)
+            localStorage.setItem('loggedIn', true);
+            this.setState({loggedIn:localStorage.getItem('loggedIn')});
+        }
     }
     render(){
+        const redirect = this.state.loggedIn;
+        console.log("redirect", redirect)
         return(
             <section className="section-login-box container">
+                
+                {redirect==="true" && (<Redirect to='/dashboard'/>)}
+
                 <div className="login-holder align-items-center row">
                     <div className="login-box">
 
@@ -22,7 +35,7 @@ class LoginBox extends Component {
                                 {/* <Button className="btn-social-login" color="primary">Entrar com Facebook</Button> */}
                                 <FacebookLogin
                                     appId="228989214537025"
-                                    autoLoad
+                                    // autoLoad
                                     callback={this.responseFacebook}
                                     render={renderProps => (
                                         <Button className="btn-social-login" color="primary" onClick={renderProps.onClick}>Entrar com Facebook</Button>

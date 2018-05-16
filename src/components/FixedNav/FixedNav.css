@@ -1,0 +1,19 @@
+.fixed-top-nav{
+    height: 64px;
+}
+.nav-top{
+    height: 64px;
+    border: 0;
+    font-size: 16px;
+    padding: 0;
+    padding-top: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 6px 10px -4px rgba(0,0,0,.15);
+}
+.logo-nav{
+    width: 140px;
+}
+.nav-menu-list{
+    text-align: right;
+}
