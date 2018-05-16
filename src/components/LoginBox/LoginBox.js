@@ -2,14 +2,22 @@ import React, { Component } from 'react';
 import eskolareLogo from './eskolare.png';
 import './LoginBox.css';
 import { Redirect } from 'react-router';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button } from 'reactstrap';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+import { GoogleLogin } from 'react-google-login';
 
 class LoginBox extends Component {
     state = {
         loggedIn:localStorage.getItem('loggedIn')
     }
     responseFacebook = (response) => {
+        if (response.accessToken) {
+            console.log(response.accessToken)
+            localStorage.setItem('loggedIn', true);
+            this.setState({loggedIn:localStorage.getItem('loggedIn')});
+        }
+    }
+    responseGoogle = (response) => {
         if (response.accessToken) {
             console.log(response.accessToken)
             localStorage.setItem('loggedIn', true);
@@ -32,30 +40,21 @@ class LoginBox extends Component {
                         </div>
                         <div className="login-box-form">
                             <div className="btn-social-login-holder col-12">
-                                {/* <Button className="btn-social-login" color="primary">Entrar com Facebook</Button> */}
                                 <FacebookLogin
                                     appId="228989214537025"
-                                    // autoLoad
                                     callback={this.responseFacebook}
                                     render={renderProps => (
                                         <Button className="btn-social-login" color="primary" onClick={renderProps.onClick}>Entrar com Facebook</Button>
                                     )}
                                 />
-                                <Button className="btn-social-login" color="danger">Entrar com Google+</Button>
-                            </div>
-                            <p>ou</p>
-                            <div className="email-login-holder col-12">
-                                <Form>
-                                    <FormGroup>
-                                        <Label for="loginEmail">Email</Label>
-                                        <Input type="email" name="email" id="loginEmail" placeholder="user@eskolare.com.br"/>
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Label for="loginPassword">Senha</Label>
-                                        <Input type="password" name="password" id="loginPassword" placeholder="********"/>
-                                    </FormGroup>
-                                    <Button className="btn-email-login" color="info">Entrar</Button>
-                                </Form>
+                                <GoogleLogin
+                                    clientId="335412301478-1q0ei5et7tm03qbe8l1897tijrj1f2c0.apps.googleusercontent.com"
+                                    onSuccess={this.responseGoogle}
+                                    onFailure={this.responseGoogle}
+                                    style={{background:'transparent',border:'none', padding:0}}
+                                >
+                                    <Button className="btn-social-login" color="danger">Entrar com Google+</Button>
+                                </GoogleLogin>
                             </div>
                         </div>
 

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Route, 
-  // Redirect 
-} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Home from './pages/Home/Home.js';
 import Dashboard from './pages/Dashboard/Dashboard.js';
 
