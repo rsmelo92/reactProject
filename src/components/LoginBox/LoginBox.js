@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import './LoginBox.css';
 import eskolareLogo from './eskolare.png';
+import './LoginBox.css';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 
 class LoginBox extends Component {
+    responseFacebook = (response) => {
+        console.log(response)
+    }
     render(){
         return(
             <section className="section-login-box container">
@@ -15,7 +19,15 @@ class LoginBox extends Component {
                         </div>
                         <div className="login-box-form">
                             <div className="btn-social-login-holder col-12">
-                                <Button className="btn-social-login" color="primary">Entrar com Facebook</Button>
+                                {/* <Button className="btn-social-login" color="primary">Entrar com Facebook</Button> */}
+                                <FacebookLogin
+                                    appId="228989214537025"
+                                    autoLoad
+                                    callback={this.responseFacebook}
+                                    render={renderProps => (
+                                        <Button className="btn-social-login" color="primary" onClick={renderProps.onClick}>Entrar com Facebook</Button>
+                                    )}
+                                />
                                 <Button className="btn-social-login" color="danger">Entrar com Google+</Button>
                             </div>
                             <p>ou</p>
