@@ -20,7 +20,7 @@ class Grid extends Component {
     
     createRows = () => {
         let rows = [];
-        for (let i = 1; i < 10; i++) {
+        for (let i = 1; i <= 10; i++) {
             rows.push({
                 id:i,
                 avatar:faker.internet.avatar(),
